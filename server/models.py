@@ -4,22 +4,22 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from config import db
 
 # Models go here!
-class Song(db.Model, SerializerMixin):
-    __tablename__ = 'songs'
+class User(db.Model, SerializerMixin):
+    __tablename__ = 'users'
 
     serialize_rules = ('-playlist_songs', '-playlists.songs')
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
-    artist = db.Column(db.String, nullable=False)
-    genre = db.Column(db.String, nullable=False)
-    url = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
 
-    playlist_songs = db.relationship('PlaylistSong', backref='song')
-    playlists = association_proxy('playlist_songs', 'playlist')
+    # playlist_songs = db.relationship('PlaylistSong', backref='song')
+    # playlists = association_proxy('playlist_songs', 'playlist')
 
     def __repr__(self):
-        return f'<Song {self.title}>'
+        return f'<Song {self.username}>'
     
 
 class Playlist(db.Model, SerializerMixin):
