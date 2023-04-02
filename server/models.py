@@ -22,8 +22,8 @@ class User(db.Model, SerializerMixin):
         return f'<Song {self.username}>'
     
 
-class Playlist(db.Model, SerializerMixin):
-    __tablename__ = 'playlists'
+class Profile(db.Model, SerializerMixin):
+    __tablename__ = 'profiles'
 
     serialize_rules = ('-playlist_songs', '-songs.playlists')
 
